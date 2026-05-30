@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Эдустрим - Отслеживание учебного процесса</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./fasd.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div>
+          <h1>Эдустрим</h1>
+          <p class="subtitle">Платформа мониторинга учебного процесса</p>
+        </div>
+        <div class="topbar-actions hidden" id="user-actions">
+          <span id="user-badge"></span>
+          <button id="logout-btn" class="btn btn-secondary">Выйти</button>
+        </div>
+      </header>
+
+      <main id="app-content">
+        <section class="card auth-card" id="auth-section">
+          <h2>Вход в систему</h2>
+          <p class="section-description">
+            Авторизуйтесь для доступа к данным студента или преподавателя.
+          </p>
+
+          <form id="login-form" class="auth-form">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" required />
+
+            <label for="password">Пароль</label>
+            <input id="password" name="password" type="password" required />
+
+            <button type="submit" class="btn btn-primary">Войти</button>
+          </form>
+          <p id="auth-message" class="feedback"></p>
+        </section>
+
+        <section class="hidden" id="student-layout">
+          <div class="grid widgets-grid">
+            <article class="card widget">
+              <h3>Средний балл</h3>
+              <p class="metric" id="avg-score">-</p>
+            </article>
+            <article class="card widget">
+              <h3>Пропуски</h3>
+              <p class="metric" id="absences-count">-</p>
+            </article>
+            <article class="card widget">
+              <h3>Ближайшая пара</h3>
+              <p class="metric" id="next-lesson">-</p>
+            </article>
+          </div>
+
+          <section class="card">
+            <div class="section-head">
+              <h2>Электронный журнал</h2>
+              <select id="subject-filter">
+                <option value="">Все предметы</option>
+                <option value="Алгебра">Алгебра</option>
+                <option value="Информатика">Информатика</option>
+                <option value="Физика">Физика</option>
+                <option value="История">История</option>
+              </select>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Дата</th>
+                    <th>Предмет</th>
+                    <th>Оценка</th>
+                  </tr>
+                </thead>
+                <tbody id="grades-table-body"></tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="card">
+            <h2>Расписание на неделю</h2>
+            <div id="schedule-grid" class="schedule-grid"></div>
+          </section>
+        </section>
+
+        <section class="hidden" id="teacher-layout">
+          <div class="grid teacher-grid">
+            <section class="card">
+              <h2>Выставить оценку</h2>
+              <form id="grade-form" class="stack-form">
+                <label for="student-select">Студент</label>
+                <select id="student-select" required></select>
+
+                <label for="subject-input">Предмет</label>
+                <input id="subject-input" type="text" placeholder="Информатика" required />
+
+                <label for="score-input">Оценка</label>
+                <input id="score-input" type="number" min="1" max="5" required />
+
+                <button class="btn btn-primary" type="submit">Сохранить оценку</button>
+              </form>
+            </section>
+
+            <section class="card">
+              <h2>Учет посещаемости</h2>
+              <form id="attendance-form" class="stack-form">
+                <label for="attendance-student-select">Студент</label>
+                <select id="attendance-student-select" required></select>
+
+                <label for="attendance-status">Статус</label>
+                <select id="attendance-status" required>
+                  <option value="present">Присутствовал</option>
+                  <option value="absent">Отсутствовал</option>
+                </select>
+
+                <label for="attendance-reason">Причина отсутствия</label>
+                <input
+                  id="attendance-reason"
+                  type="text"
+                  placeholder="Указать причину (если отсутствовал)"
+                />
+
+                <button class="btn btn-primary" type="submit">Отметить посещаемость</button>
+              </form>
+            </section>
+          </div>
+          <p id="teacher-message" class="feedback"></p>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="./lll.js"></script>
+  </body>
+</html>
